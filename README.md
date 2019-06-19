@@ -2,7 +2,7 @@
 - install java 1.8
 - install maven
 - mvn install package
-- mvn spring-boot:run
+- mmvn spring-boot:run -Drun.jvmArguments='-Dserver.port=8081'
 
 
 - go to http://localhost:8080 on browser
