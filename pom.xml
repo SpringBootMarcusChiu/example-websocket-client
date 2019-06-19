@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.marcuschiu</groupId>
-	<artifactId>example-websocket</artifactId>
+	<artifactId>example-websocket-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>example-websocket</name>
+	<name>example-websocket-client</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
