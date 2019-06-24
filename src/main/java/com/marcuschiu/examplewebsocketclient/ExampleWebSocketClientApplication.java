@@ -10,6 +10,8 @@ import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
 
+import java.util.Scanner;
+
 @SpringBootApplication
 public class ExampleWebSocketClientApplication implements CommandLineRunner {
 
@@ -49,9 +51,14 @@ public class ExampleWebSocketClientApplication implements CommandLineRunner {
 //			}
 //		});
 
-		System.out.println("Sending: Marcus Chiu");
-		Message msg = new Message();
-		msg.setName("Marcus Chiu");
-		session.send("/app/hello", msg);
+		while (true) {
+			System.out.println("press any key to send message");
+			System.in.read();
+
+			System.out.println("Sending: Marcus Chiu");
+			Message msg = new Message();
+			msg.setName("Marcus Chiu");
+			session.send("/app/hello", msg);
+		}
 	}
 }
