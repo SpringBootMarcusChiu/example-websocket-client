@@ -23,6 +23,7 @@ public class ExampleWebSocketClientApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("entered command-line-runner");
 
+		// use wss:// for secure websockets
 		StompSession session = generateWebSocketSession("ws://localhost:8080/gs-guide-websocket");
 
 		System.out.println("press any key to send message");
