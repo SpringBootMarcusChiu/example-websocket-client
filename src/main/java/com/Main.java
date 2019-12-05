@@ -1,10 +1,7 @@
-package com.marcuschiu.examplewebsocketclient;
+package com;
 
-import com.marcuschiu.examplewebsocketclient.configuration.MyStompSessionHandler;
-import com.marcuschiu.examplewebsocketclient.model.Message;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.configuration.MyStompSessionHandler;
+import com.model.Message;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.simp.stomp.StompSession;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
@@ -12,34 +9,26 @@ import org.springframework.web.socket.messaging.WebSocketStompClient;
 
 import java.util.concurrent.ExecutionException;
 
-@SpringBootApplication
-public class ExampleWebSocketClientApplication implements CommandLineRunner {
+public class Main {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ExampleWebSocketClientApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("entered command-line-runner");
-
+	public static void main(String[] args) throws Exception {
 		// use wss:// for secure websockets
 		StompSession session = generateWebSocketSession("ws://localhost:8080/gs-guide-websocket");
 
-		System.out.println("press any key to send message");
+		System.out.println("press any key to send Broadcast Message (all users receive response message)");
 		System.in.read();
+		session.send("/app/hello", new Message("Marcus Chiu"));
 
-		System.out.println("Sending: Marcus Chiu");
-		Message msg = new Message();
-		Integer i = 0;
-		while (i != 10) {
-			i++;
-			msg.setName(i.toString());
-			session.send("/app/hello", msg);
-		}
+		System.out.println("press any key to send Only-Me-Message (only this user receives response message)");
+		System.in.read();
+		session.send("/app/hello/specific-user", new Message("Marcus Chiu"));
+
+		// wait for last message
+		Thread.sleep(5000);
+		session.disconnect();
 	}
 
-	private StompSession generateWebSocketSession(String url) throws ExecutionException, InterruptedException {
+	private static StompSession generateWebSocketSession(String url) throws ExecutionException, InterruptedException {
 		// https://stackoverflow.com/questions/30413380/websocketstompclient-wont-connect-to-sockjs-endpoint
 		StompSession session;
 

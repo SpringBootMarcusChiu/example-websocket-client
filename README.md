@@ -2,5 +2,5 @@
 - requires websocket server running: https://github.com/SpringBootMarcusChiu/example-websocket-server
 - install java 1.8
 - install maven
-- mvn install package
-- mvn spring-boot:run
+- mvn compile
+- mvn exec:java -Dexec.mainClass="com.Main" -Dexec.cleanupDaemonThreads=false -Dexec.args="arg0 arg1"

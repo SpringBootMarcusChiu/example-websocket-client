@@ -1,4 +1,4 @@
-package com.marcuschiu.examplewebsocketclient.model;
+package com.model;
 
 import lombok.Data;
 
