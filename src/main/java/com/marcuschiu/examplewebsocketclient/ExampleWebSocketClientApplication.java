@@ -32,7 +32,7 @@ public class ExampleWebSocketClientApplication implements CommandLineRunner {
 		System.out.println("Sending: Marcus Chiu");
 		Message msg = new Message();
 		Integer i = 0;
-		while (true) {
+		while (i != 10) {
 			i++;
 			msg.setName(i.toString());
 			session.send("/app/hello", msg);
